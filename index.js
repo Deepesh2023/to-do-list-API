@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const toDoRouter = require("./controllers/toDoRouter");
 const userRouter = require("./controllers/userRouter");
+const loginRouter = require("./controllers/loginRouter");
 
 const app = express();
 const port = 3000;
@@ -16,6 +17,7 @@ app.get("/", (request, response) => {
   response.send("<h1>hello world</h1>");
 });
 
+app.use("/api", loginRouter);
 app.use("/api", userRouter);
 app.use("/api", toDoRouter);
 
