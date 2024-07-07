@@ -1,1 +1,13 @@
 GET http://localhost:3000/
+
+###
+GET http://localhost:3000/api/todos/deepesh
+
+###
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "username": "deep_learning_42",
+    "password": "12345"
+}
