@@ -27,4 +27,8 @@ Content-Type: application/json
 # create a new todo
 POST http://localhost:3000/api/todos
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.ZGVlcF9sZWFybmluZ180Mg.durlzvmobM2Zj2mw0SVv9vZfpm0TqcX7Q2Dap_5WjTM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.ZGVlcF9sZWFybmluZ180Mg.durlzvmobM2Zj2mw0SVv9vZfpm0TqcX7Q2Dap_5WjTM
+
+{
+    "toDo": "clean my room"
+}
