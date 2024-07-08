@@ -10,16 +10,7 @@ toDoRouter.get("/todos/:user", async (request, response) => {
 });
 
 toDoRouter.post("/todos", async (request, response) => {
-  let token = request.headers.authorization;
-  if (token) {
-    if (token.startsWith("Bearer ")) {
-      token = token.replace("Bearer ", "");
-      const user = jwt.verify(token, process.env.JWT_KEY);
-      return response.json(user);
-    }
-  }
-
-  response.status(401).end();
+  response.status(200).end();
 });
 
 module.exports = toDoRouter;
