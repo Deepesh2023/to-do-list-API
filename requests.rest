@@ -32,3 +32,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.ZGVlcF9sZWFybmluZ180Mg.durlzvmobM2Zj2
 {
     "toDo": "clean my room"
 }
+
+###
+# get all todos of a specific user
+GET http://localhost:3000/api/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.ZGVlcF9sZWFybmluZ180Mg.durlzvmobM2Zj2mw0SVv9vZfpm0TqcX7Q2Dap_5WjTM

@@ -4,14 +4,17 @@ const ToDo = require("../models/toDo");
 
 const jwt = require("jsonwebtoken");
 
-toDoRouter.get("/todos/:user", async (request, response) => {
-  const user = request.params.user;
-  console.log(user);
-  response.status(200).end();
+toDoRouter.get("/todos", async (request, response) => {
+  const token = request.headers.authorization;
+  const username = jwt.verify(token, process.env.JWT_KEY);
+
+  const toDos = await ToDo.find({ user: username });
+  response.json(toDos);
 });
 
 toDoRouter.post("/todos", async (request, response) => {
   const token = request.headers.authorization;
+
   const username = jwt.verify(token, process.env.JWT_KEY);
 
   const user = await User.findOne({ username: username });
