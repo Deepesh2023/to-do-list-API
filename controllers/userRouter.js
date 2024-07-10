@@ -7,6 +7,11 @@ const saltRounds = 12;
 userRouter.post("/users", async (request, response) => {
   const newUser = request.body;
 
+  const exsistingUser = await User.findOne({ username: newUser.username });
+  if (exsistingUser) {
+    return response.status(400).send({ error: "username already taken" });
+  }
+
   const password = newUser.password;
   const passwordHash = await bcrypt.hash(password, saltRounds);
 
@@ -15,9 +20,8 @@ userRouter.post("/users", async (request, response) => {
     passwordHash,
   });
 
-  const savedUser = await user.save();
-
-  response.status(201).send(savedUser);
+  await user.save();
+  response.status(201).end();
 });
 
 module.exports = userRouter;
