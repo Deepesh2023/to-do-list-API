@@ -10,8 +10,6 @@ const tokenCleanUp = (request, response, next) => {
       return response.status(401).end();
     }
   }
-
-  next();
 };
 
 const decodeToken = (request, response, next) => {

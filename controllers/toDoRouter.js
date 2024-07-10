@@ -6,8 +6,12 @@ const ToDo = require("../models/toDo");
 toDoRouter.get("/todos", async (request, response, next) => {
   const username = request.headers.username;
 
-  const toDos = await ToDo.find({ user: username });
-  response.json(toDos);
+  if (username) {
+    const toDos = await ToDo.find({ user: username });
+    return response.json(toDos);
+  }
+
+  next();
 });
 
 toDoRouter.post("/todos", async (request, response, next) => {

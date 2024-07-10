@@ -5,8 +5,8 @@ const userRouter = require("./controllers/userRouter");
 const loginRouter = require("./controllers/loginRouter");
 const {
   tokenCleanUp,
-  errorHandler,
   decodeToken,
+  errorHandler,
 } = require("./configs/middleware");
 
 const app = express();

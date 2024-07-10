@@ -48,4 +48,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0h
 ###
 # get all todos of a specific user
 GET http://localhost:3000/api/todos
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
+# Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
