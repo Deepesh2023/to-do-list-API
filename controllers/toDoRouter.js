@@ -1,35 +1,33 @@
 const toDoRouter = require("express").Router();
+
 const User = require("../models/user");
 const ToDo = require("../models/toDo");
 
-const jwt = require("jsonwebtoken");
-
-toDoRouter.get("/todos", async (request, response) => {
-  const token = request.headers.authorization;
-  const username = jwt.verify(token, process.env.JWT_KEY);
+toDoRouter.get("/todos", async (request, response, next) => {
+  const username = request.headers.username;
 
   const toDos = await ToDo.find({ user: username });
   response.json(toDos);
 });
 
-toDoRouter.post("/todos", async (request, response) => {
-  const token = request.headers.authorization;
+toDoRouter.post("/todos", async (request, response, next) => {
+  const username = request.headers.username;
 
-  const username = jwt.verify(token, process.env.JWT_KEY);
-
-  const user = await User.findOne({ username: username });
-  if (user) {
+  const userInDB = await User.findOne({ username: username });
+  if (userInDB) {
     const toDo = new ToDo({
       toDo: request.body.toDo,
-      user: username,
+      user: userInDB.username,
       isDone: false,
     });
 
     const newToDo = await toDo.save();
     return response.json(newToDo);
+  } else {
+    response.status(400).end();
   }
 
-  response.status(400).end();
+  next();
 });
 
 module.exports = toDoRouter;
