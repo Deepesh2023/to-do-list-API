@@ -20,9 +20,10 @@ loginRouter.post("/login", async (request, response) => {
 
   if (isPasswordValid) {
     const token = jwt.sign(userInDB.username, process.env.JWT_KEY);
-    response.status(200).json(token);
+    return response.json({ username: userInDB.username, token });
   }
-  response.status(400).end();
+  
+  response.status(400).send({ error: "incorrect password" });
 });
 
 module.exports = loginRouter;

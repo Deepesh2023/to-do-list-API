@@ -21,7 +21,7 @@ userRouter.post("/users", async (request, response) => {
   });
 
   await user.save();
-  response.status(201).end();
+  response.status(201).send({ message: "user created" });
 });
 
 module.exports = userRouter;
