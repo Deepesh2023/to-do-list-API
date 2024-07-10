@@ -61,3 +61,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0h
 DELETE http://localhost:3000/api/todos/668e2c9e2ef890255ec7d795
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
 
+
+###
+# update a spcified todo of a specified user
+PUT http://localhost:3000/api/todos/668e2e111a47ceda43061b39
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
+
+{
+    "toDo": "fix ignis",
+    "isDone": "true"
+}

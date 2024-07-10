@@ -46,6 +46,21 @@ toDoRouter.post("/todos", async (request, response, next) => {
   next();
 });
 
+toDoRouter.put("/todos/:id", async (request, response, next) => {
+  const username = request.headers.username;
+  const toDo = request.body;
+  const id = request.params.id;
+
+  if (username) {
+    const updatedToDo = await ToDo.findByIdAndUpdate(id, toDo, {
+      returnDocument: "after",
+    });
+    return response.send(updatedToDo);
+  }
+
+  next();
+});
+
 toDoRouter.delete("/todos/:id", async (request, response, next) => {
   const username = request.headers.username;
   const id = request.params.id;
