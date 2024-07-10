@@ -14,6 +14,18 @@ toDoRouter.get("/todos", async (request, response, next) => {
   next();
 });
 
+toDoRouter.get("/todos/:id", async (request, response, next) => {
+  const username = request.headers.username;
+  const id = request.params.id;
+
+  if (username) {
+    const toDo = await ToDo.findById(id);
+    return response.json(toDo);
+  }
+
+  next();
+});
+
 toDoRouter.post("/todos", async (request, response, next) => {
   const username = request.headers.username;
 
@@ -29,6 +41,18 @@ toDoRouter.post("/todos", async (request, response, next) => {
     return response.json(newToDo);
   } else {
     response.status(400).end();
+  }
+
+  next();
+});
+
+toDoRouter.delete("/todos/:id", async (request, response, next) => {
+  const username = request.headers.username;
+  const id = request.params.id;
+
+  if (username) {
+    const toDo = await ToDo.findByIdAndDelete(id);
+    return response.send(toDo);
   }
 
   next();

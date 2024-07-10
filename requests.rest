@@ -48,4 +48,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0h
 ###
 # get all todos of a specific user
 GET http://localhost:3000/api/todos
-# Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
+
+
+###
+# get a specified todo of a specific user
+GET http://localhost:3000/api/todos/668e1cdb88c79ef6f220ccfd
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
+
+###
+# delete a specified todo of a specific user
+DELETE http://localhost:3000/api/todos/668e2c9e2ef890255ec7d795
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
+
