@@ -3,8 +3,27 @@ const toDoRouter = require("express").Router();
 const User = require("../models/user");
 const ToDo = require("../models/toDo");
 
+toDoRouter.post("/todos", async (request, response, next) => {
+  const toDo = request.body;
+
+  const userInDB = await User.findOne({ username: toDo.user });
+  if (userInDB) {
+    const newToDo = new ToDo({
+      ...toDo,
+      isDone: false,
+    });
+
+    const newToDoInDB = await newToDo.save();
+    return response.json(newToDoInDB);
+  } else {
+    response.status(400).end();
+  }
+
+  next();
+});
+
 toDoRouter.get("/todos", async (request, response, next) => {
-  const username = request.headers.username;
+  const username = request.body.user;
 
   if (username) {
     const toDos = await ToDo.find({ user: username });
@@ -15,7 +34,7 @@ toDoRouter.get("/todos", async (request, response, next) => {
 });
 
 toDoRouter.get("/todos/:id", async (request, response, next) => {
-  const username = request.headers.username;
+  const username = request.body.user;
   const id = request.params.id;
 
   if (username) {
@@ -26,32 +45,11 @@ toDoRouter.get("/todos/:id", async (request, response, next) => {
   next();
 });
 
-toDoRouter.post("/todos", async (request, response, next) => {
-  const username = request.headers.username;
-
-  const userInDB = await User.findOne({ username: username });
-  if (userInDB) {
-    const toDo = new ToDo({
-      toDo: request.body.toDo,
-      user: userInDB.username,
-      isDone: false,
-    });
-
-    const newToDo = await toDo.save();
-    return response.json(newToDo);
-  } else {
-    response.status(400).end();
-  }
-
-  next();
-});
-
 toDoRouter.put("/todos/:id", async (request, response, next) => {
-  const username = request.headers.username;
   const toDo = request.body;
   const id = request.params.id;
 
-  if (username) {
+  if (toDo.user) {
     const updatedToDo = await ToDo.findByIdAndUpdate(id, toDo, {
       returnDocument: "after",
     });
@@ -62,7 +60,7 @@ toDoRouter.put("/todos/:id", async (request, response, next) => {
 });
 
 toDoRouter.delete("/todos/:id", async (request, response, next) => {
-  const username = request.headers.username;
+  const username = request.body.user;
   const id = request.params.id;
 
   if (username) {

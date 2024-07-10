@@ -14,14 +14,12 @@ const tokenCleanUp = (request, response, next) => {
 
 const decodeToken = (request, response, next) => {
   const token = request.headers.authorization;
-  let username;
   try {
-    username = jwt.verify(token, process.env.JWT_KEY);
+    request.body.user = jwt.verify(token, process.env.JWT_KEY);
   } catch (error) {
     return next(error);
   }
 
-  request.headers.username = username;
   next();
 };
 

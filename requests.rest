@@ -9,12 +9,6 @@
 #     password: dataScience
 # }
 
-
-GET http://localhost:3000/
-
-###
-GET http://localhost:3000/api/todos/deepesh
-
 ###
 # create a new user
 POST http://localhost:3000/api/users
@@ -42,7 +36,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
 
 {
-    "toDo": "fix ignis"
+    "toDo": "take luca for a walk"
 }
 
 ###
@@ -53,22 +47,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0h
 
 ###
 # get a specified todo of a specific user
-GET http://localhost:3000/api/todos/668e1cdb88c79ef6f220ccfd
+GET http://localhost:3000/api/todos/668e33b47039aee6e43f62ae
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
 
 ###
 # delete a specified todo of a specific user
-DELETE http://localhost:3000/api/todos/668e2c9e2ef890255ec7d795
+DELETE http://localhost:3000/api/todos/668e33b47039aee6e43f62ae
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
 
 
 ###
 # update a spcified todo of a specified user
-PUT http://localhost:3000/api/todos/668e2e111a47ceda43061b39
+PUT http://localhost:3000/api/todos/668e33b47039aee6e43f62ae
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.YXJ0M21pcw.nEsLCbNOLLnwXj_spl4nwmKZ0hM2qm83JhXrzmRHEII
 
 {
-    "toDo": "fix ignis",
+    "toDo": "take luca for a walk",
     "isDone": "true"
 }
